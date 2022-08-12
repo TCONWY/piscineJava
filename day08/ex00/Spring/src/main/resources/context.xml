@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:contex="http://www.springframework.org/schema/contex"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/contex
+    http://www.springframework.org/schema/util/spring-util.xsd">
+
+
+    <bean id = "preProcessorToLower" class = "org.example.classes.PreProcessorToLowerImpl" />
+    <bean id = "preProcessorToUpper" class = "org.example.classes.PreProcessorToUpperImpl" />
+
+    <bean id="rendererErrorToLower" class="org.example.classes.RendererErrImpl">
+        <constructor-arg ref="preProcessorToLower"/>
+    </bean>
+    <bean id="rendererErrorToUpper" class="org.example.classes.RendererErrImpl">
+        <constructor-arg ref="preProcessorToUpper"/>
+    </bean>
+    <bean id="renderOutToLower" class="org.example.classes.RendererStandardImpl">
+        <constructor-arg ref="preProcessorToLower"/>
+    </bean>
+    <bean id="renderOutToUpper" class="org.example.classes.RendererStandardImpl">
+        <constructor-arg ref="preProcessorToUpper"/>
+    </bean>
+
+
+    <bean id = "printerWithPrefix" class = "org.example.classes.PrinterWithPrefixImp">
+        <constructor-arg ref="rendererErrorToUpper"/>
+        <property name="prefix" value="Prefix"/>
+    </bean>
+    <bean id="printerWithDateTime" class="org.example.classes.PrinterWithDateTimeImpl">
+        <constructor-arg ref="rendererErrorToLower"/>
+    </bean>
+</beans>

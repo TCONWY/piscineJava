@@ -1,0 +1,7 @@
+rush00/game/GenerateMap.class
+rush00/game/Arguments.class
+rush00/game/Game.class
+rush00/game/MovesHadler.class
+rush00/game/Parser.class
+rush00/game/IllegalParametersException.class
+rush00/game/FieldPainter.class
